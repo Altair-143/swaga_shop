@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Свага Шоп - Галерея</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <span class="logo-text-main">СВАГА</span>
+            <span class="logo-text-secondary">ШОП</span>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="about.html">О проекте</a></li>
+                <li><a href="gallery.html" class="active">Галерея</a></li>
+                <li><a href="#" id="account-btn"><i class="fas fa-user"></i> Личный кабинет</a></li>
+                <li><a href="#" id="contacts-btn"><i class="fas fa-envelope"></i> Контакты</a></li>
+                <li><a href="#" id="cart-btn"><i class="fas fa-shopping-cart"></i> Корзина (<span id="cart-count">0</span>)</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="gallery-section">
+            <h2>Галерея</h2>
+
+            <!-- Кнопки переключения между разделами -->
+            <div class="gallery-tabs">
+                <button class="gallery-tab active" data-tab="all">Все фото</button>
+                <button class="gallery-tab" data-tab="popular">Популярные</button>
+            </div>
+
+            <!-- Контейнер для всех фото -->
+            <div id="all-photos" class="photo-grid active">
+                <!-- 1 -->
+                <div class="photo-item" data-likes="436" data-id="1">
+                    <img src="images/dochik.jpg" alt="Дождик">
+                    <div class="photo-overlay">
+                        <span class="photo-likes"><i class="fas fa-heart"></i> 436</span>
+                        <button class="like-btn" data-id="1"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+                <!-- 2 -->
+                <div class="photo-item" data-likes="283" data-id="2">
+                    <img src="images/trava.jpg" alt="Трава">
+                    <div class="photo-overlay">
+                        <span class="photo-likes"><i class="fas fa-heart"></i> 283</span>
+                        <button class="like-btn" data-id="2"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+                <!-- 3 -->
+                <div class="photo-item" data-likes="108" data-id="3">
+                    <img src="images/brokoli.jpg" alt="Брокколи">
+                    <div class="photo-overlay">
+                        <span class="photo-likes"><i class="fas fa-heart"></i> 108</span>
+                        <button class="like-btn" data-id="3"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+                <!-- 4 -->
+                <div class="photo-item" data-likes="31" data-id="4">
+                    <img src="images/gor.jpg" alt="Горы">
+                    <div class="photo-overlay">
+                        <span class="photo-likes"><i class="fas fa-heart"></i> 31</span>
+                        <button class="like-btn" data-id="4"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+                <!-- 5 -->
+                <div class="photo-item" data-likes="64" data-id="5">
+                    <img src="images/bekon.jpg" alt="Бекон">
+                    <div class="photo-overlay">
+                        <span class="photo-likes"><i class="fas fa-heart"></i> 64</span>
+                        <button class="like-btn" data-id="5"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+                <!-- 6 -->
+                <div class="photo-item" data-likes="53" data-id="6">
+                    <img src="images/klava2.jpg" alt="Клава">
+                    <div class="photo-overlay">
+                        <span class="photo-likes"><i class="fas fa-heart"></i> 53</span>
+                        <button class="like-btn" data-id="6"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+                <!-- 7 -->
+                <div class="photo-item" data-likes="19" data-id="7">
+                    <img src="images/kamen.jpg" alt="Камень">
+                    <div class="photo-overlay">
+                        <span class="photo-likes"><i class="fas fa-heart"></i> 19</span>
+                        <button class="like-btn" data-id="7"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+                <!-- 8 -->
+                <div class="photo-item" data-likes="357" data-id="8">
+                    <img src="images/lava.jpg" alt="Лава">
+                    <div class="photo-overlay">
+                        <span class="photo-likes"><i class="fas fa-heart"></i> 357</span>
+                        <button class="like-btn" data-id="8"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- для популярных фото -->
+            <div id="popular-photos" class="photo-grid"></div>
+        </section>
+    </main>
+
+    <!-- Окно карточки товара -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-product-detail">
+                <img id="modal-img" src="" alt="Товар">
+                <div class="modal-info">
+                    <h2 id="modal-title"></h2>
+                    <p class="modal-price" id="modal-price"></p>
+                    <div class="modal-characteristics">
+                        <h3>Характеристики:</h3>
+                        <p id="modal-desc"></p>
+                        <h3>Размеры:</h3>
+                        <div class="size-selector" id="modal-sizes-container"></div>
+                    </div>
+                    <button class="add-to-cart-modal">Добавить в корзину</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Окно Корзины -->
+    <div id="cart-modal" class="modal">
+        <div class="modal-content cart-modal-content">
+            <span class="close-modal close-cart">&times;</span>
+            <h2><i class="fas fa-shopping-cart"></i> Ваша корзина</h2>
+            <div id="cart-items"></div>
+            <div class="cart-total">
+                <strong>Итого: <span id="cart-total-price">0</span> ₽</strong>
+            </div>
+            <button id="checkout-btn" class="checkout-btn">Оформить заказ</button>
+        </div>
+    </div>
+
+    <!-- Окно Личного кабинета -->
+    <div id="account-modal" class="modal">
+        <div class="modal-content account-modal-content">
+            <span class="close-modal close-account">&times;</span>
+            <div class="account-tabs">
+                <button class="tab-btn active" data-tab="login">Вход</button>
+                <button class="tab-btn" data-tab="register">Регистрация</button>
+            </div>
+            
+            <!-- Форма входа -->
+            <div id="login-tab" class="tab-content active">
+                <h2>Вход в аккаунт</h2>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="login-email" placeholder="example@mail.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-lock"></i> Пароль</label>
+                        <input type="password" id="login-password" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="account-btn">Войти</button>
+                </form>
+            </div>
+
+            <!-- Форма регистрации -->
+            <div id="register-tab" class="tab-content">
+                <h2>Регистрация</h2>
+                <form id="register-form">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Имя</label>
+                        <input type="text" id="register-name" placeholder="Ваше имя" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="register-email" placeholder="example@mail.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-lock"></i> Пароль</label>
+                        <input type="password" id="register-password" placeholder="Минимум 6 символов" required minlength="6">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-lock"></i> Подтверждение пароля</label>
+                        <input type="password" id="register-confirm" placeholder="Повторите пароль" required>
+                    </div>
+                    <button type="submit" class="account-btn">Зарегистрироваться</button>
+                </form>
+            </div>
+
+            <!-- Личный кабинет после входа -->
+            <div id="profile-tab" class="tab-content">
+                <div class="profile-header">
+                    <i class="fas fa-user-circle profile-avatar"></i>
+                    <h3 id="profile-name"></h3>
+                    <p id="profile-email"></p>
+                </div>
+                <div class="profile-orders">
+                    <h4>История заказов</h4>
+                    <div id="order-history"></div>
+                </div>
+                <button id="logout-btn" class="logout-btn">Выйти</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Окно Контактов -->
+    <div id="contacts-modal" class="modal">
+        <div class="modal-content contacts-content">
+            <span class="close-modal close-contacts">&times;</span>
+            <h2><i class="fas fa-address-book"></i> Контакты</h2>
+            
+            <div class="contacts-container">
+                <div class="contact-info">
+                    <h3>Наши контакты</h3>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>г. Москва, ул. 1 Парковая, д. 12</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <p>+7 (915) 003-02-07</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>sammsc2009@gmail.com</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <p>Пн-Вс: 10:00 - 22:00</p>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h3>Напишите нам</h3>
+                    <form id="contacts-feedback-form">
+                        <input type="text" placeholder="Ваше имя" required>
+                        <input type="email" placeholder="Ваш Email" required>
+                        <input type="tel" placeholder="Ваш телефон">
+                        <textarea placeholder="Ваше сообщение" rows="4" required></textarea>
+                        <button type="submit">Отправить сообщение</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
